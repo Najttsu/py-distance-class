@@ -11,12 +11,12 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: "Distance" | int) -> "Distance":
+    def __add__(self, other: float | int) -> "Distance":
         if not isinstance(other, Distance):
             return Distance(self.km + other)
         return Distance(self.km + other.km)
 
-    def __iadd__(self, other: "Distance" | int) -> "Distance":
+    def __iadd__(self, other: float | int) -> "Distance":
         if not isinstance(other, Distance):
             self.km += other
             return self
@@ -28,32 +28,31 @@ class Distance:
             return Distance(self.km * other)
         raise TypeError("__mul__ method should not accept Distance instance")
 
-    def __truediv__(self, other: int | float) -> "Distance" | None:
+    def __truediv__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
-            if other != 0:
-                return Distance(round(self.km / other, 2))
+            return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: "Distance" | int) -> bool:
+    def __lt__(self, other: float | int) -> bool:
         if not isinstance(other, Distance):
             return self.km < other
         return self.km < other.km
 
-    def __gt__(self, other: "Distance" | int) -> bool:
+    def __gt__(self, other: float | int) -> bool:
         if not isinstance(other, Distance):
             return self.km > other
         return self.km > other.km
 
-    def __eq__(self, other: "Distance" | int) -> bool:
+    def __eq__(self, other: float | int) -> bool:
         if not isinstance(other, Distance):
             return self.km == other
         return self.km == other.km
 
-    def __le__(self, other: "Distance" | int) -> bool:
+    def __le__(self, other: float | int) -> bool:
         if not isinstance(other, Distance):
             return self.km <= other
         return self.km <= other.km
 
-    def __ge__(self, other: "Distance" | int) -> bool:
+    def __ge__(self, other: float | int) -> bool:
         if not isinstance(other, Distance):
             return self.km >= other
         return self.km >= other.km
