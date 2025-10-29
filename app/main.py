@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Distance:
-    def __init__(self, km: int) -> None:
+    def __init__(self, km: int | float) -> None:
         self.km = km
 
     def __str__(self) -> str:
@@ -23,12 +23,12 @@ class Distance:
         self.km += other.km
         return self
 
-    def __mul__(self, other: "Distance" | int | float) -> "Distance":
+    def __mul__(self, other: int | float) -> "Distance":
         if isinstance(other, (int, float)):
             return Distance(self.km * other)
         raise TypeError("__mul__ method should not accept Distance instance")
 
-    def __truediv__(self, other: "Distance" | int | float) -> "Distance":
+    def __truediv__(self, other: int | float) -> "Distance":
         return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance" | int | float) -> bool:
