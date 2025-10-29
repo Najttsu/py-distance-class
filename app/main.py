@@ -29,7 +29,7 @@ class Distance:
         raise TypeError("__mul__ method should not accept Distance instance")
 
     def __truediv__(self, other: "Distance" | int | float) -> "Distance":
-            return Distance(round(self.km / other, 2))
+        return Distance(round(self.km / other, 2))
 
     def __lt__(self, other: "Distance" | int | float) -> bool:
         if not isinstance(other, Distance):
